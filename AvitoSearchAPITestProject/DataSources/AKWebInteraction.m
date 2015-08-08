@@ -60,7 +60,6 @@ static NSString *const WEB_INTERACTION_ERROR_DOMAIN = @"WEB_INTERACTION_ERROR_DO
 
      if (completionHandler)
      completionHandler(NSURLSessionAuthChallengeUseCredential, [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]);
-     NSLog(@"URLSession:didReceiveChallenge:completionHandler:");
 }
 
 - (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session

@@ -14,6 +14,8 @@
 @interface ViewController ()<UISearchBarDelegate>
 {
     __weak UISegmentedControl *_topSegmentedControl;
+    __weak UIActivityIndicatorView *_topActivityIndicator;
+    
     __weak UISearchBar *_searchBar;
     __weak UITableView *_resultsTableView;
     
@@ -46,6 +48,12 @@
     [[self navigationItem]setTitleView:segmentedControl];
     _topSegmentedControl = segmentedControl;
     
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityIndicator setHidesWhenStopped:YES];
+    UIBarButtonItem *segmentBarItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    [[self navigationItem]setLeftBarButtonItem:segmentBarItem];
+    _topActivityIndicator = activityIndicator;
 }
 
 
@@ -93,6 +101,7 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                        [weakSelf stopActivityAnimation];
                         [[weakSelf resultsDataSource]updateResultsWithArray:searchResult andMirrorOddEvenFlag:YES];
                     }
                     
@@ -103,8 +112,14 @@
         [_itunesSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
             if ([weakSelf currentSearchApi]!= nil &&
                 [weakSelf currentSearchApi] == [weakSelf itunesSearchApi]){
-                UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                [av show];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                        [weakSelf stopActivityAnimation];
+                        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                        [av show];
+                    }
+                    
+                });
             }
         }];
     }
@@ -125,6 +140,8 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                        
+                        [weakSelf stopActivityAnimation];
                         [[weakSelf resultsDataSource]updateResultsWithArray:searchResult andMirrorOddEvenFlag:NO];
                     }
                     
@@ -135,8 +152,14 @@
         [_gitHubSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
             if ([weakSelf currentSearchApi]!= nil &&
                 [weakSelf currentSearchApi] == [weakSelf gitHubSearchApi]){
-                UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                [av show];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                        [weakSelf stopActivityAnimation];
+                        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                        [av show];
+                    }
+                    
+                });
             }
         }];
     }
@@ -160,6 +183,17 @@
     return [[_searchBar text]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+
+-(void)startActivityAnimation
+{
+    [_topActivityIndicator startAnimating];
+}
+
+-(void)stopActivityAnimation
+{
+    [_topActivityIndicator stopAnimating];
+}
+
 #pragma mark - UISearchBarDelegate
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
@@ -173,6 +207,7 @@
     if ([[self cleanSearchString]length]>0){
         [[self currentSearchApi]setSearchString:[self cleanSearchString]];
         [searchBar resignFirstResponder];
+        [self startActivityAnimation];
     }
 }
 
