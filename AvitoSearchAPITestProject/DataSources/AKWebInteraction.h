@@ -18,6 +18,9 @@ static NSString *const WEB_INTERACTION_ERROR_DOMAIN;
 
 +(instancetype)sharedInstance;
 
+-(id)initInstance;
+
 -(void)performURLRequest:(NSURLRequest*)request withCompletion:(webInteractionCompletion)completion;
+-(void)cancelAllRequests;
 
 @end

@@ -32,6 +32,14 @@ static NSString *const WEB_INTERACTION_ERROR_DOMAIN = @"WEB_INTERACTION_ERROR_DO
     return sharedInst;
 }
 
+-(id)initInstance
+{
+    if (self = [super init]){
+    
+    }
+    
+    return self;
+}
 
 -(NSURLSession *)mainURLSession
 {
@@ -102,5 +110,23 @@ static NSString *const WEB_INTERACTION_ERROR_DOMAIN = @"WEB_INTERACTION_ERROR_DO
     [dTask resume];
 }
 
+
+-(void)cancelAllRequests
+{
+    [[self mainURLSession]getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        
+        [dataTasks enumerateObjectsUsingBlock:^(NSURLSessionTask *task, NSUInteger idx, BOOL *stop) {
+            [task cancel];
+        }];
+        
+        [uploadTasks enumerateObjectsUsingBlock:^(NSURLSessionTask *task, NSUInteger idx, BOOL *stop) {
+            [task cancel];
+        }];
+        
+        [downloadTasks enumerateObjectsUsingBlock:^(NSURLSessionTask *task, NSUInteger idx, BOOL *stop) {
+            [task cancel];
+        }];
+    }];
+}
 
 @end

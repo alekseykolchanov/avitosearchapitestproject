@@ -9,6 +9,9 @@
 #import "AKSearchResultCell.h"
 
 @implementation AKSearchResultCell
+{
+    UITapGestureRecognizer *_iconTapRecognizer;
+}
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -21,6 +24,11 @@
 }
 
 -(void)buildView {
+    
+    [[[self contentView]subviews]enumerateObjectsUsingBlock:^(UIView *subView, NSUInteger idx, BOOL *stop) {
+        [subView removeFromSuperview];
+    }];
+    
     UIImageView *mIV = [[UIImageView alloc]initWithFrame:CGRectZero];
     [mIV setBackgroundColor:[UIColor colorWithWhite:0.95f alpha:1.0f]];
     mIV.layer.borderColor = [UIColor colorWithWhite:0.95f alpha:1.0f].CGColor;
@@ -45,16 +53,28 @@
     [self.contentView addSubview:stLbl];
     [stLbl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setSubtitleLbl:stLbl];
+    
+    _iconTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapOnIconView:)];
+    [mIV addGestureRecognizer:_iconTapRecognizer];
+    [mIV setUserInteractionEnabled:YES];
 }
 
 
 -(void)prepareForReuse
 {
+    [self setIconURLString:nil];
     [[self iconIV]setImage:nil];
-    [[self titleLbl]setText:@""];
-    [[self subtitleLbl]setText:@""];
+    [[self titleLbl]setText:nil];
+    [[self subtitleLbl]setText:nil];
 }
 
+
+-(void)didTapOnIconView:(UIGestureRecognizer*)recognizer
+{
+    if ([[self delegate]respondsToSelector:@selector(didTapOnIconInSearchResultCell:)]){
+        [[self delegate]didTapOnIconInSearchResultCell:self];
+    }
+}
 
 
 @end

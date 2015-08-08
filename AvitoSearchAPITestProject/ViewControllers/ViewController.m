@@ -11,17 +11,13 @@
 #import "AKITunesSearchAPI.h"
 #import "AKGitHubSearchAPI.h"
 
-@interface ViewController ()<UISearchBarDelegate>
+@interface ViewController ()<UISearchBarDelegate,AKResultsDataSourceDelegate>
 {
     __weak UISegmentedControl *_topSegmentedControl;
     __weak UIActivityIndicatorView *_topActivityIndicator;
     
     __weak UISearchBar *_searchBar;
     __weak UITableView *_resultsTableView;
-    
-    
-    
-    
     
 }
 
@@ -32,6 +28,7 @@
 
 @end
 
+
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -40,6 +37,7 @@
     
 
     [self setResultsDataSource:[AKResultsDataSource new]];
+    [[self resultsDataSource]setDelegate:self];
     [[self resultsDataSource] setMainTV:_resultsTableView];
     
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"iTunes",@"GitHub"]];
@@ -103,25 +101,31 @@
                     if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
                         [weakSelf stopActivityAnimation];
                         [[weakSelf resultsDataSource]updateResultsWithArray:searchResult andMirrorOddEvenFlag:YES];
+                        
+                        if (!searchResult || [searchResult count]==0) {
+                            UIAlertView *av = [[UIAlertView alloc]initWithTitle:nil message:@"Ничего не найдено" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                            [av show];
+                        }
                     }
                     
                 });
             }
         }];
         
-        [_itunesSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
-            if ([weakSelf currentSearchApi]!= nil &&
-                [weakSelf currentSearchApi] == [weakSelf itunesSearchApi]){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
-                        [weakSelf stopActivityAnimation];
-                        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                        [av show];
-                    }
-                    
-                });
-            }
-        }];
+        if ([_itunesSearchApi respondsToSelector:@selector(setFailUpdateBlock:)])
+            [_itunesSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
+                if ([weakSelf currentSearchApi]!= nil &&
+                    [weakSelf currentSearchApi] == [weakSelf itunesSearchApi]){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                            [weakSelf stopActivityAnimation];
+                            UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                            [av show];
+                        }
+                        
+                    });
+                }
+            }];
     }
     
     return _itunesSearchApi;
@@ -143,25 +147,31 @@
                         
                         [weakSelf stopActivityAnimation];
                         [[weakSelf resultsDataSource]updateResultsWithArray:searchResult andMirrorOddEvenFlag:NO];
+                        
+                        if (!searchResult || [searchResult count]==0) {
+                            UIAlertView *av = [[UIAlertView alloc]initWithTitle:nil message:@"Ничего не найдено" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                            [av show];
+                        }
                     }
                     
                 });
             }
         }];
         
-        [_gitHubSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
-            if ([weakSelf currentSearchApi]!= nil &&
-                [weakSelf currentSearchApi] == [weakSelf gitHubSearchApi]){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
-                        [weakSelf stopActivityAnimation];
-                        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-                        [av show];
-                    }
-                    
-                });
-            }
-        }];
+        if ([_gitHubSearchApi respondsToSelector:@selector(setFailUpdateBlock:)])
+            [_gitHubSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
+                if ([weakSelf currentSearchApi]!= nil &&
+                    [weakSelf currentSearchApi] == [weakSelf gitHubSearchApi]){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                            [weakSelf stopActivityAnimation];
+                            UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                            [av show];
+                        }
+                        
+                    });
+                }
+            }];
     }
     
     return _gitHubSearchApi;
@@ -222,6 +232,17 @@
     if (segmentedControl == _topSegmentedControl) {
         [[self resultsDataSource]updateResultsWithArray:@[] andMirrorOddEvenFlag:NO];
     }
+}
+
+#pragma mark - AKResultsDataSourceDelegate
+-(void)resultsDataSource:(AKResultsDataSource *)resultsDataSource didTapOnIconImageView:(UIImageView *)iconImageView
+{
+    if (!iconImageView)
+        return;
+    
+    CGRect rectInWindow = [iconImageView.superview convertRect:iconImageView.frame toView:nil];
+    
+    
 }
 
 @end

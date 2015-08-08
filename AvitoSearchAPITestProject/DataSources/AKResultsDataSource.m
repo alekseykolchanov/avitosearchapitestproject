@@ -12,15 +12,17 @@
 #import "AKRightSideResultCell.h"
 #import "AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.h"
 #import "AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.h"
+#import "AKImageCachedDataSource.h"
 
 
 
 static NSString *leftCellIdentifier = @"AKLeftSideResultCell";
 static NSString *rightCellIdentifier = @"AKRightSideResultCell";
 
-@interface AKResultsDataSource ()
+@interface AKResultsDataSource ()<AKSearchResultCellDelegate>
 {
     BOOL _isMirrorOddEven;
+    AKImageCachedDataSource *imageDataSource;
 }
 
 @property (nonatomic,strong) NSArray *resultsArr;
@@ -29,6 +31,14 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
 
 
 @implementation AKResultsDataSource
+
+-(id)init {
+    if (self = [super init]){
+        imageDataSource = [AKImageCachedDataSource new];
+    }
+    
+    return self;
+}
 
 -(void)setMainTV:(UITableView *)mainTV
 {
@@ -57,9 +67,12 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
 -(void)updateResultsWithArray:(NSArray*)array andMirrorOddEvenFlag:(BOOL)isMirrorOddEven
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [imageDataSource cancelAllDownloads];
         _isMirrorOddEven = isMirrorOddEven;
         [self setResultsArr:array];
         [[self mainTV]reloadData];
+        
     });
 }
 
@@ -90,6 +103,8 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
     [cell.titleLbl setText:@""];
     [cell.subtitleLbl setText:@""];
     
+    [cell setDelegate:self];
+    
     if (indexPath.item < [[self resultsArr]count]) {
 
         if ([[self resultsArr][indexPath.item] conformsToProtocol:@protocol(AKSearchAPIResultElementProtocol)]) {
@@ -97,6 +112,24 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
             
             [cell.titleLbl setText:[entity titleString]];
             [cell.subtitleLbl setText:[entity subtitleString]];
+            [cell setIconURLString:[entity imageURLString]];
+            
+            if ([entity imageURLString]){
+                UIImage *img = [imageDataSource imageWithURLString:[entity imageURLString]];
+                if (img){
+                    [cell.iconIV setImage:img];
+                }else{
+                    [imageDataSource downloadImageWithURLString:[entity imageURLString] withCompletion:^(NSString *urlString, UIImage *resImage) {
+                        if (resImage && urlString) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                if ([cell iconURLString] && [[cell iconURLString]isEqualToString:urlString]){
+                                    [cell.iconIV setImage:resImage];
+                                }
+                            });
+                        }
+                    }];
+                }
+            }
         }
     }
     
@@ -107,6 +140,15 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 122.0f;
+}
+
+
+#pragma mark - AKSearchResultCellDelegate
+-(void)didTapOnIconInSearchResultCell:(AKSearchResultCell *)cell
+{
+    if ([[self delegate]respondsToSelector:@selector(resultsDataSource:didTapOnIconImageView:)]){
+        [[self delegate]resultsDataSource:self didTapOnIconImageView:[cell iconIV]];
+    }
 }
 
 @end
