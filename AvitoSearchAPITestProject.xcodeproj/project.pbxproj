@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		8BD7212F1B75E217006A30D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7212E1B75E217006A30D3 /* main.m */; };
 		8BD721321B75E217006A30D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721311B75E217006A30D3 /* AppDelegate.m */; };
-		8BD721351B75E217006A30D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721341B75E217006A30D3 /* ViewController.m */; };
-		8BD721381B75E217006A30D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BD721361B75E217006A30D3 /* Main.storyboard */; };
 		8BD7213A1B75E217006A30D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BD721391B75E217006A30D3 /* Images.xcassets */; };
 		8BD7213D1B75E217006A30D3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD7213B1B75E217006A30D3 /* LaunchScreen.xib */; };
 		8BD721491B75E217006A30D3 /* AvitoSearchAPITestProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721481B75E217006A30D3 /* AvitoSearchAPITestProjectTests.m */; };
+		8BD721581B75E7B4006A30D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721561B75E7B4006A30D3 /* ViewController.m */; };
+		8BD7215C1B75EB64006A30D3 /* AKResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7215B1B75EB64006A30D3 /* AKResultsDataSource.m */; };
+		8BD7215F1B75ED43006A30D3 /* AKSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7215E1B75ED43006A30D3 /* AKSearchResultCell.m */; };
+		8BD721621B75ED64006A30D3 /* AKLeftSideResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721611B75ED64006A30D3 /* AKLeftSideResultCell.m */; };
+		8BD721651B75ED77006A30D3 /* AKRightSideResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721641B75ED77006A30D3 /* AKRightSideResultCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +35,21 @@
 		8BD7212E1B75E217006A30D3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8BD721301B75E217006A30D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8BD721311B75E217006A30D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8BD721331B75E217006A30D3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8BD721341B75E217006A30D3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8BD721371B75E217006A30D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8BD721391B75E217006A30D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8BD7213C1B75E217006A30D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8BD721421B75E217006A30D3 /* AvitoSearchAPITestProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvitoSearchAPITestProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD721471B75E217006A30D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD721481B75E217006A30D3 /* AvitoSearchAPITestProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvitoSearchAPITestProjectTests.m; sourceTree = "<group>"; };
+		8BD721551B75E7B4006A30D3 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8BD721561B75E7B4006A30D3 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8BD7215A1B75EB64006A30D3 /* AKResultsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKResultsDataSource.h; sourceTree = "<group>"; };
+		8BD7215B1B75EB64006A30D3 /* AKResultsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKResultsDataSource.m; sourceTree = "<group>"; };
+		8BD7215D1B75ED43006A30D3 /* AKSearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSearchResultCell.h; sourceTree = "<group>"; };
+		8BD7215E1B75ED43006A30D3 /* AKSearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSearchResultCell.m; sourceTree = "<group>"; };
+		8BD721601B75ED64006A30D3 /* AKLeftSideResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKLeftSideResultCell.h; sourceTree = "<group>"; };
+		8BD721611B75ED64006A30D3 /* AKLeftSideResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLeftSideResultCell.m; sourceTree = "<group>"; };
+		8BD721631B75ED77006A30D3 /* AKRightSideResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKRightSideResultCell.h; sourceTree = "<group>"; };
+		8BD721641B75ED77006A30D3 /* AKRightSideResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKRightSideResultCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +91,12 @@
 		8BD7212B1B75E217006A30D3 /* AvitoSearchAPITestProject */ = {
 			isa = PBXGroup;
 			children = (
+				8BD721591B75EB2C006A30D3 /* DataSources */,
+				8BD721521B75E7B4006A30D3 /* Views */,
+				8BD721541B75E7B4006A30D3 /* ViewControllers */,
+				8BD721571B75E7B4006A30D3 /* Model */,
 				8BD721301B75E217006A30D3 /* AppDelegate.h */,
 				8BD721311B75E217006A30D3 /* AppDelegate.m */,
-				8BD721331B75E217006A30D3 /* ViewController.h */,
-				8BD721341B75E217006A30D3 /* ViewController.m */,
-				8BD721361B75E217006A30D3 /* Main.storyboard */,
 				8BD721391B75E217006A30D3 /* Images.xcassets */,
 				8BD7213B1B75E217006A30D3 /* LaunchScreen.xib */,
 				8BD7212C1B75E217006A30D3 /* Supporting Files */,
@@ -117,6 +128,52 @@
 				8BD721471B75E217006A30D3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8BD721521B75E7B4006A30D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8BD721531B75E7B4006A30D3 /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8BD721531B75E7B4006A30D3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8BD7215D1B75ED43006A30D3 /* AKSearchResultCell.h */,
+				8BD7215E1B75ED43006A30D3 /* AKSearchResultCell.m */,
+				8BD721601B75ED64006A30D3 /* AKLeftSideResultCell.h */,
+				8BD721611B75ED64006A30D3 /* AKLeftSideResultCell.m */,
+				8BD721631B75ED77006A30D3 /* AKRightSideResultCell.h */,
+				8BD721641B75ED77006A30D3 /* AKRightSideResultCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8BD721541B75E7B4006A30D3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8BD721551B75E7B4006A30D3 /* ViewController.h */,
+				8BD721561B75E7B4006A30D3 /* ViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8BD721571B75E7B4006A30D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8BD721591B75EB2C006A30D3 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				8BD7215A1B75EB64006A30D3 /* AKResultsDataSource.h */,
+				8BD7215B1B75EB64006A30D3 /* AKResultsDataSource.m */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +256,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD721381B75E217006A30D3 /* Main.storyboard in Resources */,
 				8BD7213D1B75E217006A30D3 /* LaunchScreen.xib in Resources */,
 				8BD7213A1B75E217006A30D3 /* Images.xcassets in Resources */,
 			);
@@ -219,9 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD721351B75E217006A30D3 /* ViewController.m in Sources */,
+				8BD721581B75E7B4006A30D3 /* ViewController.m in Sources */,
+				8BD7215C1B75EB64006A30D3 /* AKResultsDataSource.m in Sources */,
+				8BD721621B75ED64006A30D3 /* AKLeftSideResultCell.m in Sources */,
 				8BD721321B75E217006A30D3 /* AppDelegate.m in Sources */,
+				8BD721651B75ED77006A30D3 /* AKRightSideResultCell.m in Sources */,
 				8BD7212F1B75E217006A30D3 /* main.m in Sources */,
+				8BD7215F1B75ED43006A30D3 /* AKSearchResultCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +304,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8BD721361B75E217006A30D3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BD721371B75E217006A30D3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8BD7213B1B75E217006A30D3 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -350,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AvitoSearchAPITestProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -360,6 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AvitoSearchAPITestProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -418,6 +472,7 @@
 				8BD7214E1B75E217006A30D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BD7214F1B75E217006A30D3 /* Build configuration list for PBXNativeTarget "AvitoSearchAPITestProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +481,7 @@
 				8BD721511B75E217006A30D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
