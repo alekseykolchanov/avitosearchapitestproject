@@ -14,13 +14,13 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         [self setSelectionStyle:UITableViewCellSelectionStyleGray];
-        [self buidView];
+        [self buildView];
     }
     
     return self;
 }
 
--(void)buidView {
+-(void)buildView {
     UIImageView *mIV = [[UIImageView alloc]initWithFrame:CGRectZero];
     [mIV setBackgroundColor:[UIColor colorWithWhite:0.95f alpha:1.0f]];
     mIV.layer.borderColor = [UIColor colorWithWhite:0.95f alpha:1.0f].CGColor;
@@ -45,6 +45,14 @@
     [self.contentView addSubview:stLbl];
     [stLbl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setSubtitleLbl:stLbl];
+}
+
+
+-(void)prepareForReuse
+{
+    [[self iconIV]setImage:nil];
+    [[self titleLbl]setText:@""];
+    [[self subtitleLbl]setText:@""];
 }
 
 

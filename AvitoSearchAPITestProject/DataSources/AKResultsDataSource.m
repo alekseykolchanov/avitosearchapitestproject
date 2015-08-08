@@ -7,8 +7,11 @@
 //
 
 #import "AKResultsDataSource.h"
+#import "AKSearchAPIProtocol.h"
 #import "AKLeftSideResultCell.h"
 #import "AKRightSideResultCell.h"
+#import "AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.h"
+#import "AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.h"
 
 
 
@@ -76,13 +79,27 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
     
     AKSearchResultCell *cell = (AKSearchResultCell *)[[self mainTV]dequeueReusableCellWithIdentifier:identifier];
     
+    [self configureCell:cell forRowAtIndexPath:indexPath];
+    
     return cell;
 }
 
 -(void)configureCell:(AKSearchResultCell*)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    AKResultsEntity *entity = [self resultsArr][indexPath.item];
-    [cell.titleLbl setText:entity.titleString];
-    [cell.subtitleLbl setText:entity.subtitleString];
+    
+    [cell.iconIV setImage:nil];
+    [cell.titleLbl setText:@""];
+    [cell.subtitleLbl setText:@""];
+    
+    if (indexPath.item < [[self resultsArr]count]) {
+
+        if ([[self resultsArr][indexPath.item] conformsToProtocol:@protocol(AKSearchAPIResultElementProtocol)]) {
+            id<AKSearchAPIResultElementProtocol> entity = [self resultsArr][indexPath.item];
+            
+            [cell.titleLbl setText:[entity titleString]];
+            [cell.subtitleLbl setText:[entity subtitleString]];
+        }
+    }
+    
 }
 
 

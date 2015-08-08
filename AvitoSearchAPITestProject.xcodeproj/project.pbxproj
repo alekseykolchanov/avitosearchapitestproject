@@ -17,6 +17,15 @@
 		8BD7215F1B75ED43006A30D3 /* AKSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7215E1B75ED43006A30D3 /* AKSearchResultCell.m */; };
 		8BD721621B75ED64006A30D3 /* AKLeftSideResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721611B75ED64006A30D3 /* AKLeftSideResultCell.m */; };
 		8BD721651B75ED77006A30D3 /* AKRightSideResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721641B75ED77006A30D3 /* AKRightSideResultCell.m */; };
+		8BD721681B7600F0006A30D3 /* AKWebInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721671B7600F0006A30D3 /* AKWebInteraction.m */; };
+		8BD7216D1B760BEA006A30D3 /* AKITunesSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7216C1B760BEA006A30D3 /* AKITunesSearchAPI.m */; };
+		8BD721701B761985006A30D3 /* AKITunesSearchAPIResultElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7216F1B761985006A30D3 /* AKITunesSearchAPIResultElement.m */; };
+		8BD721731B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721721B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.m */; };
+		8BD721771B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721761B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */; };
+		8BD7217A1B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721791B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.m */; };
+		8BD7217D1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7217C1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m */; };
+		8BD721801B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7217F1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */; };
+		8BD721831B761EF6006A30D3 /* AKGitHubSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721821B761EF6006A30D3 /* AKGitHubSearchAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +59,26 @@
 		8BD721611B75ED64006A30D3 /* AKLeftSideResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLeftSideResultCell.m; sourceTree = "<group>"; };
 		8BD721631B75ED77006A30D3 /* AKRightSideResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKRightSideResultCell.h; sourceTree = "<group>"; };
 		8BD721641B75ED77006A30D3 /* AKRightSideResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKRightSideResultCell.m; sourceTree = "<group>"; };
+		8BD721661B7600F0006A30D3 /* AKWebInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKWebInteraction.h; sourceTree = "<group>"; };
+		8BD721671B7600F0006A30D3 /* AKWebInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKWebInteraction.m; sourceTree = "<group>"; };
+		8BD7216A1B7609F1006A30D3 /* AKSearchAPIProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKSearchAPIProtocol.h; sourceTree = "<group>"; };
+		8BD7216B1B760BEA006A30D3 /* AKITunesSearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKITunesSearchAPI.h; sourceTree = "<group>"; };
+		8BD7216C1B760BEA006A30D3 /* AKITunesSearchAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKITunesSearchAPI.m; sourceTree = "<group>"; };
+		8BD7216E1B761985006A30D3 /* AKITunesSearchAPIResultElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKITunesSearchAPIResultElement.h; sourceTree = "<group>"; };
+		8BD7216F1B761985006A30D3 /* AKITunesSearchAPIResultElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKITunesSearchAPIResultElement.m; sourceTree = "<group>"; };
+		8BD721711B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AKITunesSearchAPIResultElement+AKJsonInitProtocol.h"; sourceTree = "<group>"; };
+		8BD721721B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AKITunesSearchAPIResultElement+AKJsonInitProtocol.m"; sourceTree = "<group>"; };
+		8BD721741B7619FC006A30D3 /* AKJsonInitProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKJsonInitProtocol.h; sourceTree = "<group>"; };
+		8BD721751B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.h"; sourceTree = "<group>"; };
+		8BD721761B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m"; sourceTree = "<group>"; };
+		8BD721781B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKGitHubSearchAPIResultElement.h; sourceTree = "<group>"; };
+		8BD721791B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKGitHubSearchAPIResultElement.m; sourceTree = "<group>"; };
+		8BD7217B1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AKGitHubSearchAPIResultElement+AKJsonInitProtocol.h"; sourceTree = "<group>"; };
+		8BD7217C1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m"; sourceTree = "<group>"; };
+		8BD7217E1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.h"; sourceTree = "<group>"; };
+		8BD7217F1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m"; sourceTree = "<group>"; };
+		8BD721811B761EF6006A30D3 /* AKGitHubSearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKGitHubSearchAPI.h; sourceTree = "<group>"; };
+		8BD721821B761EF6006A30D3 /* AKGitHubSearchAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKGitHubSearchAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +120,7 @@
 		8BD7212B1B75E217006A30D3 /* AvitoSearchAPITestProject */ = {
 			isa = PBXGroup;
 			children = (
+				8BD721691B7609AD006A30D3 /* Protocols */,
 				8BD721591B75EB2C006A30D3 /* DataSources */,
 				8BD721521B75E7B4006A30D3 /* Views */,
 				8BD721541B75E7B4006A30D3 /* ViewControllers */,
@@ -163,6 +193,18 @@
 		8BD721571B75E7B4006A30D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8BD7216E1B761985006A30D3 /* AKITunesSearchAPIResultElement.h */,
+				8BD7216F1B761985006A30D3 /* AKITunesSearchAPIResultElement.m */,
+				8BD721711B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.h */,
+				8BD721721B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.m */,
+				8BD721751B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.h */,
+				8BD721761B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */,
+				8BD721781B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.h */,
+				8BD721791B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.m */,
+				8BD7217B1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.h */,
+				8BD7217C1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m */,
+				8BD7217E1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.h */,
+				8BD7217F1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,8 +214,23 @@
 			children = (
 				8BD7215A1B75EB64006A30D3 /* AKResultsDataSource.h */,
 				8BD7215B1B75EB64006A30D3 /* AKResultsDataSource.m */,
+				8BD721661B7600F0006A30D3 /* AKWebInteraction.h */,
+				8BD721671B7600F0006A30D3 /* AKWebInteraction.m */,
+				8BD7216B1B760BEA006A30D3 /* AKITunesSearchAPI.h */,
+				8BD7216C1B760BEA006A30D3 /* AKITunesSearchAPI.m */,
+				8BD721811B761EF6006A30D3 /* AKGitHubSearchAPI.h */,
+				8BD721821B761EF6006A30D3 /* AKGitHubSearchAPI.m */,
 			);
 			path = DataSources;
+			sourceTree = "<group>";
+		};
+		8BD721691B7609AD006A30D3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8BD7216A1B7609F1006A30D3 /* AKSearchAPIProtocol.h */,
+				8BD721741B7619FC006A30D3 /* AKJsonInitProtocol.h */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,13 +332,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD7216D1B760BEA006A30D3 /* AKITunesSearchAPI.m in Sources */,
 				8BD721581B75E7B4006A30D3 /* ViewController.m in Sources */,
+				8BD7217A1B761CD5006A30D3 /* AKGitHubSearchAPIResultElement.m in Sources */,
 				8BD7215C1B75EB64006A30D3 /* AKResultsDataSource.m in Sources */,
 				8BD721621B75ED64006A30D3 /* AKLeftSideResultCell.m in Sources */,
+				8BD721801B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */,
+				8BD7217D1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m in Sources */,
+				8BD721701B761985006A30D3 /* AKITunesSearchAPIResultElement.m in Sources */,
+				8BD721771B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */,
 				8BD721321B75E217006A30D3 /* AppDelegate.m in Sources */,
 				8BD721651B75ED77006A30D3 /* AKRightSideResultCell.m in Sources */,
 				8BD7212F1B75E217006A30D3 /* main.m in Sources */,
 				8BD7215F1B75ED43006A30D3 /* AKSearchResultCell.m in Sources */,
+				8BD721831B761EF6006A30D3 /* AKGitHubSearchAPI.m in Sources */,
+				8BD721681B7600F0006A30D3 /* AKWebInteraction.m in Sources */,
+				8BD721731B7619EB006A30D3 /* AKITunesSearchAPIResultElement+AKJsonInitProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "AKResultsDataSource.h"
+#import "AKITunesSearchAPI.h"
+#import "AKGitHubSearchAPI.h"
 
 @interface ViewController ()<UISearchBarDelegate>
 {
@@ -16,9 +18,15 @@
     __weak UITableView *_resultsTableView;
     
     
-    AKResultsDataSource *resultsDataSource;
+    
+    
+    
 }
 
+@property (nonatomic,strong) AKResultsDataSource *resultsDataSource;
+
+@property (nonatomic,strong) AKITunesSearchAPI *itunesSearchApi;
+@property (nonatomic,strong) AKGitHubSearchAPI *gitHubSearchApi;
 
 @end
 
@@ -29,11 +37,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     
 
-    resultsDataSource = [AKResultsDataSource new];
-    [resultsDataSource setMainTV:_resultsTableView];
+    [self setResultsDataSource:[AKResultsDataSource new]];
+    [[self resultsDataSource] setMainTV:_resultsTableView];
     
     UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"iTunes",@"GitHub"]];
     [segmentedControl setSelectedSegmentIndex:0];
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     [[self navigationItem]setTitleView:segmentedControl];
     _topSegmentedControl = segmentedControl;
     
@@ -45,7 +54,7 @@
     [super loadView];
     
     //Search Bar
-    UISearchBar *sBar = [[UISearchBar alloc]initWithFrame:CGRectZero];;
+    UISearchBar *sBar = [[UISearchBar alloc]initWithFrame:CGRectZero];
     [sBar setDelegate:self];
     [sBar setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:sBar];
@@ -57,6 +66,7 @@
     
     //TableView
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero];
+    [tableView setAllowsSelection:NO];
     [tableView setKeyboardDismissMode:UIScrollViewKeyboardDismissModeInteractive];
     [tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:tableView];
@@ -69,6 +79,114 @@
 }
 
 
+-(AKITunesSearchAPI*)itunesSearchApi
+{
+    if (!_itunesSearchApi)
+    {
+        _itunesSearchApi = [AKITunesSearchAPI new];
+        
+        __weak ViewController *weakSelf = self;
+        
+        [_itunesSearchApi setSuccessUpdateBlock:^(NSString *searchStr, NSArray *searchResult){
+            if ([weakSelf currentSearchApi]!= nil &&
+                [weakSelf currentSearchApi] == [weakSelf itunesSearchApi]){
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                        [[weakSelf resultsDataSource]updateResultsWithArray:searchResult andMirrorOddEvenFlag:YES];
+                    }
+                    
+                });
+            }
+        }];
+        
+        [_itunesSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
+            if ([weakSelf currentSearchApi]!= nil &&
+                [weakSelf currentSearchApi] == [weakSelf itunesSearchApi]){
+                UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                [av show];
+            }
+        }];
+    }
+    
+    return _itunesSearchApi;
+}
+
+-(AKGitHubSearchAPI*)gitHubSearchApi
+{
+    if (!_gitHubSearchApi){
+        
+        _gitHubSearchApi = [AKGitHubSearchAPI new];
+        
+        __weak ViewController *weakSelf = self;
+        [_gitHubSearchApi setSuccessUpdateBlock:^(NSString *searchStr, NSArray *searchResult){
+            if ([weakSelf currentSearchApi]!= nil &&
+                [weakSelf currentSearchApi] == [weakSelf gitHubSearchApi]){
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([searchStr isEqualToString:[weakSelf cleanSearchString]]){
+                        [[weakSelf resultsDataSource]updateResultsWithArray:searchResult andMirrorOddEvenFlag:NO];
+                    }
+                    
+                });
+            }
+        }];
+        
+        [_gitHubSearchApi setFailUpdateBlock:^(NSString *searchStr, NSError *error){
+            if ([weakSelf currentSearchApi]!= nil &&
+                [weakSelf currentSearchApi] == [weakSelf gitHubSearchApi]){
+                UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+                [av show];
+            }
+        }];
+    }
+    
+    return _gitHubSearchApi;
+}
+
+
+-(id<AKSearchAPIProtocol>)currentSearchApi {
+    switch ([_topSegmentedControl selectedSegmentIndex]) {
+        case 0:
+            return [self itunesSearchApi];
+        case 1:
+            return [self gitHubSearchApi];
+    }
+    
+    return nil;
+}
+
+-(NSString *)cleanSearchString {
+    return [[_searchBar text]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 #pragma mark - UISearchBarDelegate
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    
+    return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if ([[self cleanSearchString]length]>0){
+        [[self currentSearchApi]setSearchString:[self cleanSearchString]];
+        [searchBar resignFirstResponder];
+    }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [[self resultsDataSource]updateResultsWithArray:@[] andMirrorOddEvenFlag:NO];
+}
+
+#pragma mark - SegmentedControl
+-(void)segmentedControlValueChanged:(UISegmentedControl*)segmentedControl
+{
+    if (segmentedControl == _topSegmentedControl) {
+        [[self resultsDataSource]updateResultsWithArray:@[] andMirrorOddEvenFlag:NO];
+    }
+}
 
 @end
