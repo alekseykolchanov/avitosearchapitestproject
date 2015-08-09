@@ -20,6 +20,7 @@
     if (self = [super init]) {
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didReceiveMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:[UIApplication sharedApplication]];
+        imageDictionary = [NSMutableDictionary new];
         concurrentQueue = dispatch_queue_create("imageCacheQueue", DISPATCH_QUEUE_CONCURRENT);
         webInteractionInstance = [[AKWebInteraction alloc]initInstance];
         

@@ -10,14 +10,18 @@
 #import "AKResultsDataSource.h"
 #import "AKITunesSearchAPI.h"
 #import "AKGitHubSearchAPI.h"
+#import "AKImageViewVC.h"
 
-@interface ViewController ()<UISearchBarDelegate,AKResultsDataSourceDelegate>
+@interface ViewController ()<UISearchBarDelegate,AKResultsDataSourceDelegate,UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 {
     __weak UISegmentedControl *_topSegmentedControl;
     __weak UIActivityIndicatorView *_topActivityIndicator;
     
     __weak UISearchBar *_searchBar;
     __weak UITableView *_resultsTableView;
+    
+    
+    __weak UIImageView *_showIconImageView;
     
 }
 
@@ -237,12 +241,150 @@
 #pragma mark - AKResultsDataSourceDelegate
 -(void)resultsDataSource:(AKResultsDataSource *)resultsDataSource didTapOnIconImageView:(UIImageView *)iconImageView
 {
-    if (!iconImageView)
+    if (!iconImageView || !iconImageView.image)
+    {
+        _showIconImageView = nil;
         return;
+    }
     
-    CGRect rectInWindow = [iconImageView.superview convertRect:iconImageView.frame toView:nil];
+    _showIconImageView = iconImageView;
     
+    AKImageViewVC *ivc = [AKImageViewVC new];
+    [ivc setImage:iconImageView.image];
+
+
+    [ivc setTransitioningDelegate:self];
+    
+    [self presentViewController:ivc animated:YES completion:nil];
     
 }
+
+
+
+#pragma mark - UIViewControllerTransitioningDelegate
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+{
+    return self;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return self;
+}
+
+#pragma mark - UIViewControllerAnimatedTransitioning <NSObject>
+
+// This is used for percent driven interactive transitions, as well as for container controllers that have companion animations that might need to
+// synchronize with the main animation.
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
+{
+    return 0.3f;
+}
+
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
+{
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    UIView *toView = [toVC view];
+    UIView *fromView = [fromVC view];
+    
+    CGRect iconRect = [self showIconImageViewWindowFrame];
+    CGRect windowBounds = [self windowBounds];
+    
+    if ([toVC isMemberOfClass:[AKImageViewVC class]]) {
+        
+        //Stick the toView into position
+        toView.frame = [transitionContext finalFrameForViewController:toVC];
+        [transitionContext.containerView addSubview:toView];
+        
+        
+        AKImageViewVC *imageVC = (AKImageViewVC*)toVC;
+        
+        
+        [toView setBackgroundColor:[UIColor clearColor]];
+        
+        if ([transitionContext isAnimated]){
+            
+            [toView setBackgroundColor:[UIColor clearColor]];
+            
+            [[imageVC leftIVConstraint]setConstant:iconRect.origin.x];
+            [[imageVC rightIVConstraint]setConstant:-windowBounds.size.width + CGRectGetMaxX(iconRect)];
+            [[imageVC topIVConstraint]setConstant:iconRect.origin.y];
+            [[imageVC bottomIVConstraint]setConstant:-windowBounds.size.height + CGRectGetMaxY(iconRect)];
+            [_showIconImageView setHidden:YES];
+            
+            [imageVC.view layoutIfNeeded];
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+                
+                [toView setBackgroundColor:[UIColor blackColor]];
+                
+                [[imageVC leftIVConstraint]setConstant:0.0f];
+                [[imageVC rightIVConstraint]setConstant:0.0f];
+                [[imageVC topIVConstraint]setConstant:0.0f];
+                [[imageVC bottomIVConstraint]setConstant:0.0f];
+                [imageVC.view layoutIfNeeded];
+                
+            } completion:^(BOOL finished) {
+                if (finished)
+                {
+                    [transitionContext completeTransition:YES];
+                }
+            }];
+        }else{
+            [transitionContext completeTransition:YES];
+        }
+        
+        
+    }else if ([fromVC isMemberOfClass:[AKImageViewVC class]]) {
+        toView.frame = [transitionContext finalFrameForViewController:toVC];
+        [transitionContext.containerView insertSubview:toView belowSubview:fromView];
+        
+        if ([transitionContext isAnimated]){
+            
+            AKImageViewVC *imageVC = (AKImageViewVC*)fromVC;
+            
+            [imageVC.view layoutIfNeeded];
+            
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+                [fromView setBackgroundColor:[UIColor clearColor]];
+ 
+                [[imageVC leftIVConstraint]setConstant:iconRect.origin.x];
+                [[imageVC rightIVConstraint]setConstant:-windowBounds.size.width + CGRectGetMaxX(iconRect)];
+                [[imageVC topIVConstraint]setConstant:iconRect.origin.y];
+                [[imageVC bottomIVConstraint]setConstant:-windowBounds.size.height + CGRectGetMaxY(iconRect)];
+                [imageVC.view layoutIfNeeded];
+                
+            } completion:^(BOOL finished) {
+                if (finished)
+                {
+                    [_showIconImageView setHidden:NO];
+                    _showIconImageView = nil;
+                    [transitionContext completeTransition:YES];
+                }
+            }];
+        }else{
+            [_showIconImageView setHidden:NO];
+            _showIconImageView = nil;
+            [transitionContext completeTransition:YES];
+        }
+    }
+}
+
+-(CGRect)showIconImageViewWindowFrame
+{
+    if (_showIconImageView){
+        UIImageView *iv = _showIconImageView;
+        return [iv.superview convertRect:iv.frame toView:self.navigationController.view];
+    }else{
+        return CGRectMake([self windowBounds].size.width/2.0f - 1.0f, [self windowBounds].size.height/2.0f - 1.0f, 2.0f, 2.0f);
+    }
+}
+
+-(CGRect)windowBounds{
+    return [self navigationController].view.bounds;
+}
+
 
 @end

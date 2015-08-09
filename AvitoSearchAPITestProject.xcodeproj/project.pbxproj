@@ -27,6 +27,7 @@
 		8BD7217D1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7217C1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m */; };
 		8BD721801B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7217F1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */; };
 		8BD721831B761EF6006A30D3 /* AKGitHubSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721821B761EF6006A30D3 /* AKGitHubSearchAPI.m */; };
+		8BD721861B773A18006A30D3 /* AKImageViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721851B773A18006A30D3 /* AKImageViewVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		8BD7217F1B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m"; sourceTree = "<group>"; };
 		8BD721811B761EF6006A30D3 /* AKGitHubSearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKGitHubSearchAPI.h; sourceTree = "<group>"; };
 		8BD721821B761EF6006A30D3 /* AKGitHubSearchAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKGitHubSearchAPI.m; sourceTree = "<group>"; };
+		8BD721841B773A18006A30D3 /* AKImageViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKImageViewVC.h; sourceTree = "<group>"; };
+		8BD721851B773A18006A30D3 /* AKImageViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKImageViewVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +192,8 @@
 			children = (
 				8BD721551B75E7B4006A30D3 /* ViewController.h */,
 				8BD721561B75E7B4006A30D3 /* ViewController.m */,
+				8BD721841B773A18006A30D3 /* AKImageViewVC.h */,
+				8BD721851B773A18006A30D3 /* AKImageViewVC.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				8BD721801B761E9D006A30D3 /* AKGitHubSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */,
 				8BD7217D1B761E09006A30D3 /* AKGitHubSearchAPIResultElement+AKJsonInitProtocol.m in Sources */,
 				8BD721701B761985006A30D3 /* AKITunesSearchAPIResultElement.m in Sources */,
+				8BD721861B773A18006A30D3 /* AKImageViewVC.m in Sources */,
 				8BD721771B761B97006A30D3 /* AKITunesSearchAPIResultElement+AKSearchAPIResultElementProtocol.m in Sources */,
 				8BD721321B75E217006A30D3 /* AppDelegate.m in Sources */,
 				8BD721651B75ED77006A30D3 /* AKRightSideResultCell.m in Sources */,

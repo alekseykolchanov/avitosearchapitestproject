@@ -124,6 +124,10 @@ static NSString *rightCellIdentifier = @"AKRightSideResultCell";
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 if ([cell iconURLString] && [[cell iconURLString]isEqualToString:urlString]){
                                     [cell.iconIV setImage:resImage];
+                                    [cell.iconIV setAlpha:0.0f];
+                                    [UIView animateWithDuration:0.12f animations:^{
+                                        [cell.iconIV setAlpha:1.0f];
+                                    }];
                                 }
                             });
                         }

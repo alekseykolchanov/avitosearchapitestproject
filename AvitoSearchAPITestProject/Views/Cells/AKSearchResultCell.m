@@ -30,9 +30,12 @@
     }];
     
     UIImageView *mIV = [[UIImageView alloc]initWithFrame:CGRectZero];
-    [mIV setBackgroundColor:[UIColor colorWithWhite:0.95f alpha:1.0f]];
-    mIV.layer.borderColor = [UIColor colorWithWhite:0.95f alpha:1.0f].CGColor;
-    mIV.layer.borderWidth = 0.5f;
+    [mIV setBackgroundColor:[UIColor clearColor]];
+    mIV.layer.shadowColor = [UIColor colorWithWhite:0.1f alpha:0.9f].CGColor;
+    mIV.layer.shadowOffset = CGSizeMake(3.0f, 3.0f);
+    mIV.layer.shadowOpacity = 0.5f;
+    mIV.layer.shadowRadius = 1.0f;
+    [mIV setContentMode:UIViewContentModeScaleAspectFit];
     [self.contentView addSubview:mIV];
     [mIV setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setIconIV:mIV];
@@ -42,6 +45,7 @@
     [mLbl setTextColor:[UIColor blackColor]];
     [mLbl setFont:[UIFont fontWithName:@"HelveticaNeue" size:16.0f]];
     [mLbl setTextAlignment:NSTextAlignmentLeft];
+    [mLbl setNumberOfLines:3];
     [self.contentView addSubview:mLbl];
     [mLbl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self setTitleLbl:mLbl];
@@ -63,6 +67,7 @@
 -(void)prepareForReuse
 {
     [self setIconURLString:nil];
+    [[self iconIV]setHidden:NO];
     [[self iconIV]setImage:nil];
     [[self titleLbl]setText:nil];
     [[self subtitleLbl]setText:nil];
