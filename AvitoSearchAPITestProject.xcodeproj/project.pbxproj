@@ -11,7 +11,6 @@
 		8BD7212F1B75E217006A30D3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7212E1B75E217006A30D3 /* main.m */; };
 		8BD721321B75E217006A30D3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721311B75E217006A30D3 /* AppDelegate.m */; };
 		8BD7213A1B75E217006A30D3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BD721391B75E217006A30D3 /* Images.xcassets */; };
-		8BD7213D1B75E217006A30D3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD7213B1B75E217006A30D3 /* LaunchScreen.xib */; };
 		8BD721491B75E217006A30D3 /* AvitoSearchAPITestProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721481B75E217006A30D3 /* AvitoSearchAPITestProjectTests.m */; };
 		8BD721581B75E7B4006A30D3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD721561B75E7B4006A30D3 /* ViewController.m */; };
 		8BD7215C1B75EB64006A30D3 /* AKResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7215B1B75EB64006A30D3 /* AKResultsDataSource.m */; };
@@ -49,7 +48,6 @@
 		8BD721301B75E217006A30D3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8BD721311B75E217006A30D3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8BD721391B75E217006A30D3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8BD7213C1B75E217006A30D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8BD721421B75E217006A30D3 /* AvitoSearchAPITestProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AvitoSearchAPITestProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BD721471B75E217006A30D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD721481B75E217006A30D3 /* AvitoSearchAPITestProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AvitoSearchAPITestProjectTests.m; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				8BD721301B75E217006A30D3 /* AppDelegate.h */,
 				8BD721311B75E217006A30D3 /* AppDelegate.m */,
 				8BD721391B75E217006A30D3 /* Images.xcassets */,
-				8BD7213B1B75E217006A30D3 /* LaunchScreen.xib */,
 				8BD7212C1B75E217006A30D3 /* Supporting Files */,
 			);
 			path = AvitoSearchAPITestProject;
@@ -323,7 +320,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD7213D1B75E217006A30D3 /* LaunchScreen.xib in Resources */,
 				8BD7213A1B75E217006A30D3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,17 +376,6 @@
 			targetProxy = 8BD721431B75E217006A30D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		8BD7213B1B75E217006A30D3 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BD7213C1B75E217006A30D3 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8BD7214A1B75E217006A30D3 /* Debug */ = {
@@ -479,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = AvitoSearchAPITestProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -490,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = AvitoSearchAPITestProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
